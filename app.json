@@ -1,4 +1,14 @@
 {
   "name": "deli-app",
-  "slug": "deli-app"
+  "slug": "deli-app",
+  "scheme": "deli-app",
+  "plugins": [
+    "expo-router",
+    "expo-secure-store"
+  ],
+  "expo": {
+    "web": {
+      "bundler": "metro"
+    }
+  }
 }
