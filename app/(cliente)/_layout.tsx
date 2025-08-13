@@ -23,7 +23,7 @@ export default function ClienteLayout() {
           }} 
       />
       <Tabs.Screen 
-        name="home" 
+        name="transporte" 
         options={{ 
           title: 'Transporte',
           tabBarIcon: ({color, size}) => (

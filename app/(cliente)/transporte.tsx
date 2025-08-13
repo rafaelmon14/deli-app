@@ -7,7 +7,7 @@ import {SafeAreaView, SafeAreaProvider} from 'react-native-safe-area-context';
 import HeaderUsuario from '../../components/HeaderUsuario';
 
 
-export default function HomeCliente() {  
+export default function TransporteCliente() {  
     const origin = {latitude: -3.981619, longitude: -79.214194};
     const destination = {latitude: -3.993863, longitude: -79.198413};
     const [region, setRegion] = useState(null);

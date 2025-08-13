@@ -1,3 +1,4 @@
+import { useRouter } from 'expo-router';
 import { FlatList, View, Text, Image, TouchableOpacity, StyleSheet, Dimensions } from 'react-native';
 
 const numColumnas = 4;
@@ -16,6 +17,7 @@ type Props = {
 };
 
 export default function GridCategorias({ categorias, onSeleccionar }: Props) {
+  const router = useRouter();
   const renderItem = ({ item }: { item: Categoria }) => (
     <TouchableOpacity style={styles.item} onPress={() => onSeleccionar?.(item)}>
       <Image source={item.icono} style={styles.icono} />
@@ -24,18 +26,45 @@ export default function GridCategorias({ categorias, onSeleccionar }: Props) {
   );
 
   return (
-    <FlatList className='bg-red-400 mb-0'
-      data={categorias}
-      renderItem={renderItem}
-      keyExtractor={(item) => item.id}
-      numColumns={numColumnas}
-    />
+    <View style={styles.grid}>
+      {categorias.map((categoria) => (
+        <TouchableOpacity
+          key={categoria.id}
+          style={styles.item}
+          onPress={() =>
+            router.push({
+              pathname: "/categoria/[id]",
+              params: { id: categoria.id, nombre: categoria.nombre }
+            })
+          }
+        >
+          <Image source={categoria.icono} style={styles.icono} />
+          <Text style={styles.texto} numberOfLines={1} ellipsizeMode="tail">
+            {categoria.nombre}
+          </Text>
+        </TouchableOpacity>
+      ))}
+    </View>
+
+
+    
   );
 }
 
 const styles = StyleSheet.create({
   lista: {
     marginTop: 14
+  },
+   grid: {
+    flexDirection: "row",
+    flexWrap: "wrap",
+    justifyContent: "space-between",
+    paddingHorizontal: 4
+  },
+  imagen: {
+    width: 60,
+    height: 60,
+    borderRadius: 30
   },
   item: {
     alignItems: 'center',
@@ -54,6 +83,7 @@ const styles = StyleSheet.create({
     borderRadius: 25,
   },
   texto: {
+    marginTop: 4,
     fontSize: 12,
     fontWeight: '500',
     textAlign: 'center',

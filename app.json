@@ -9,6 +9,7 @@
   "expo": {
     "web": {
       "bundler": "metro"
-    }
+    },
+    "userInterfaceStyle": "automatic"
   }
 }
